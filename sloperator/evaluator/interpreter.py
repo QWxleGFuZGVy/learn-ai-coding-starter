@@ -174,7 +174,11 @@ class Interpreter:
             case TokenType.STAR:
                 return left * right
             case TokenType.SLASH:
-                return left // right
+                if right == 0:
+                    raise SlopRuntimeError(operator.line, "division by zero")
+                # Truncate toward zero (spec), not Python's floor division.
+                quotient = abs(left) // abs(right)
+                return -quotient if (left < 0) != (right < 0) else quotient
             case TokenType.LESS:
                 return left < right
             case TokenType.LESS_EQUAL:

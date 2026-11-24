@@ -1,0 +1,2 @@
+— Parentheses group expressions, so the addition runs before the multiplication. This prints 9.
+hallucinate((1 + 2) * 3)✨
